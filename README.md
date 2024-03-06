@@ -4,7 +4,7 @@
 
 Provisions two e2-micro Ubuntu 22.04 VMs in GCP.
 
-I used Terraform variables to hide my service account email and a few public ssh keys.
+> Note: The service account email and public ssh keys are implemented as variables
 
 `secret.auto.tfvars`
 ```terraform
@@ -14,9 +14,13 @@ ssh_keys = ""
 
 ## Ansible
 
-Updates apt cache, installs prometheus, copies the modified config, and restarts the process.
+Steps found in `ansible/main.yml`
 
-Found in the `ansible`
+- Updates apt cache
+- Installs Prometheus
+- Copies the modified `prometheus.yml` config to the correct node
+- Restarts the Prometheus process
+
 ```bash
 ansible-playbook -i inventory/hosts.ini main.yml
 ```

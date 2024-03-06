@@ -14,7 +14,7 @@ ssh_keys = ""
 
 ## Ansible
 
-Steps found in `ansible/main.yml`
+Steps found in `ansible/main.yml`.
 
 - Updates apt cache
 - Installs Prometheus
@@ -25,7 +25,8 @@ Steps found in `ansible/main.yml`
 ansible-playbook -i inventory/hosts.ini main.yml
 ```
 
-`hosts.ini` uses hostnames instead of IPs
+`hosts.ini` uses hostnames instead of IPs.
+
 I have mine set in `~/.ssh/config` as seen below, but you could easily use DNS instead.
 
 ```config

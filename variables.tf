@@ -7,4 +7,3 @@ variable "ssh_keys" {
   type        = string
   description = "Public SSH keys to add on creation"
 }
-

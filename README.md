@@ -30,3 +30,9 @@ Host prom_alpha
 Host prom_beta
     HostName <insert instance ipv4>
 ```
+
+## Testing
+
+Confirmed metrics from `prom_alpha` were being received on `prom_beta` using SSH port forwarding and the Prometheus web interface.
+
+Reran Terraform/Ansible from scratch to confirm results.

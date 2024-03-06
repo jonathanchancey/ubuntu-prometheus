@@ -1,4 +1,4 @@
-- hosts: prom_alpha
+- hosts: prom
   become: true
   tasks:
     - name: "Prometheus | Update apt cache"
@@ -8,32 +8,25 @@
       apt:
         name: prometheus
         state: latest
-    - name: "Prometheus | Copy prometheus.yml"
-      copy:
-        src: "prometheus-alpha.yml"
-        dest: "/etc/prometheus/prometheus.yml"
-        mode: "0644"
     - name: "Prometheus | Systemctl restart"
       systemd:
         name: prometheus
         state: restarted
 
+- hosts: prom_alpha
+  become: true
+  tasks:
+    - name: "Prometheus | Copy prometheus.yml"
+      copy:
+        src: "prometheus-alpha.yml"
+        dest: "/etc/prometheus/prometheus.yml"
+        mode: "0644"
+
 - hosts: prom_beta
   become: true
   tasks:
-    - name: "Prometheus | Update apt cache"
-      apt:
-        update_cache: yes
-    - name: "Prometheus | Install Prometheus"
-      apt:
-        name: prometheus
-        state: latest
     - name: "Prometheus | Copy prometheus.yml"
       copy:
         src: "prometheus-beta.yml"
         dest: "/etc/prometheus/prometheus.yml"
         mode: "0644"
-    - name: "Prometheus | Systemctl restart"
-      systemd:
-        name: prometheus
-        state: restarted

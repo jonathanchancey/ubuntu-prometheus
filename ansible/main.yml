@@ -8,10 +8,6 @@
       apt:
         name: prometheus
         state: latest
-    - name: "Prometheus | Systemctl restart"
-      systemd:
-        name: prometheus
-        state: restarted
 
 - hosts: prom_alpha
   become: true
@@ -30,3 +26,11 @@
         src: "prometheus-beta.yml"
         dest: "/etc/prometheus/prometheus.yml"
         mode: "0644"
+
+- hosts: prom
+  become: true
+  tasks:
+    - name: "Prometheus | Systemctl restart"
+      systemd:
+        name: prometheus
+        state: restarted
